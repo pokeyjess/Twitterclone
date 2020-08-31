@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from twitteruser.views import index
+from authentication.views import signup_view, login_view, logout_view
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='homepage'),
+    path('login/', login_view),
+    path('logout/', logout_view),
+    path('signup/', signup_view),
     path('admin/', admin.site.urls),
 ]

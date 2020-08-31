@@ -6,6 +6,7 @@
     <title>Twitterclone</title>
   </head>
   <body>
-    <h1>{{ request.user.username }}</h1>
+    <h1>Hello, {{ request.user.display_name }}!</h1>
+    <h5>A Twitterbotter since: {{ request.user.joined_date }}</h5>
   </body>
 </html>
