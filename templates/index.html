@@ -6,8 +6,26 @@
     <title>Twitterclone</title>
   </head>
   <body>
+    <div>
+      {% if request.user.is_authenticated%}
+      <button>
+        <a href="/logout/">Log Out</a>
+      </button>
+      <button>
+        <a href="/postform/">Create a Tweetclone</a>
+      </button>
+      {% else %}
+      <button>
+        <a href="/login/">Log In</a>
+      </button>
+      <button>
+        <a href="/signup/">Create an account</a>
+      </button>
+      {% endif %}
+    </div>
+
     <h1>Hello, {{ request.user.display_name }}!</h1>
-    <h5>Cloning since: {{ request.user.joined_date }}</h5>
+    <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
 
     <div>
       {% for post in post_list %}

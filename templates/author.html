@@ -1,0 +1,18 @@
+{% if not author %}
+      <h2>The author you are looking for does not exist</h2>
+      {% else %}
+      <h1>{{ author.display_name }}</h1>
+      <p>Twittercloning since: {{ author.joined_date }}</p>
+
+      <h3>{{ author.display_name }}'s Twitterclones:</h3>
+
+      <ul>
+        {% for post in posts %}
+        <li>
+          <a href="/post/{{ post.id }}/">{{ post.content }} -- {{ post.post_time}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% endif %}
+    </div>
