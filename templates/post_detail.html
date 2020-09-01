@@ -9,5 +9,13 @@
     <h1>{{ post.content}}</h1>
     <h2>{{post.author}}</h2>
     <h3>{{post.post_time}}</h3>
+    <div>
+      <a href="/author/{{ post.author.id }}"
+        >More about {{ post.author.display_name }}</a
+      >
+    </div>
+    <div>
+      <a href="/">Back to homepage</a>
+    </div>
   </body>
 </html>
