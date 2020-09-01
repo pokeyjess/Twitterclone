@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from twitteruser.views import index, author
+from twitteruser.views import index, author, follow, unfollow
 from authentication.views import signup_view, login_view, logout_view
 from tweet.views import index, post_form_view, post_detail
 
@@ -23,6 +23,8 @@ urlpatterns = [
     path('', index, name='homepage'),
     path('author/<int:author_id>/', author),
     path('post/<int:post_id>/', post_detail),
+    path('follow/<int:author_id>/', follow),
+    path('unfollow/<author_id>/', unfollow),
     path('login/', login_view),
     path('logout/', logout_view),
     path('signup/', signup_view),

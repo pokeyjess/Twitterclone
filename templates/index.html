@@ -26,16 +26,18 @@
 
     <h1>Hello, {{ request.user.display_name }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
-
+    <p>-----------------------------------------</p>
     <div>
       {% for post in post_list %}
       <h3>{{post.content}}</h3>
       <h4>{{ post.post_time}}</h4>
       <a href="/post/{{ post.id }}/">See post</a>
     </br>
+    <p>Tweetcloned by 
       <a href="/author/{{ post.author.id }}"
-        >More about {{ post.author.display_name }}</a
-      >
+        > {{ post.author.display_name }}</a
+      ></p>
+      <p>-----------------------------------------</p>
       {% endfor %}
     </div>
   </body>
