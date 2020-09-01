@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404
 from tweet.models import Posts
 from tweet.forms import PostForm
 
@@ -17,3 +17,6 @@ def post_form_view(request):
     form = PostForm()
     return render(request, "generic_form.html", {"form": form})
 
+def post_detail(request, post_id):
+    post = get_object_or_404(Posts, id=post_id)
+    return render(request, 'post_detail.html', {'post': post})
