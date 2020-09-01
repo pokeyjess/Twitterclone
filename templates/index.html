@@ -7,6 +7,14 @@
   </head>
   <body>
     <h1>Hello, {{ request.user.display_name }}!</h1>
-    <h5>A Twitterbotter since: {{ request.user.joined_date }}</h5>
+    <h5>Cloning since: {{ request.user.joined_date }}</h5>
+
+    <div>
+      {% for post in post_list %}
+      <h3>{{post.content}}</h3>
+      <h4>{{post.author}}</h4>
+      <h6>{{ post.post_time}}</h6>
+      {% endfor %}
+    </div>
   </body>
 </html>

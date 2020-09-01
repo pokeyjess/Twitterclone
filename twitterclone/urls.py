@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from twitteruser.views import index
 from authentication.views import signup_view, login_view, logout_view
+from tweet.views import index, post_form_view
 
 urlpatterns = [
     path('', index, name='homepage'),
     path('login/', login_view),
     path('logout/', logout_view),
     path('signup/', signup_view),
+    path('postform/', post_form_view),
     path('admin/', admin.site.urls),
 ]
