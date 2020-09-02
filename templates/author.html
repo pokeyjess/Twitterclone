@@ -4,6 +4,7 @@
       <h1>{{ author.display_name }}</h1>
       <p>Twittercloning since: {{ author.joined_date }}</p>
       <h5>Follows: {{ author.follows.count}}</h5>
+      <h5>Total Twitterclones: {{posts.count}}</h5>
       <h3>{{ author.display_name }}'s Twitterclones:</h3>
       <ul>
         {% for post in posts %}
@@ -12,11 +13,15 @@
         </li>
         {% endfor %}
       </ul>
-      <a href="/unfollow/{{author.id}}">Unfollow</a>
-    
-      <a href="/follow/{{author.id}}">Follow</a>
       
-
+      {% if author.id != request.user.id %}
+      {% if author in following %}
+      <p>You are following this Twittercloner!</p>
+      <a href="/unfollow/{{author.id}}">Unfollow</a>
+      {% else %}
+      <a href="/follow/{{author.id}}">Follow</a>
+      {% endif %}  
+      {% endif %}
       {% endif %}
       <div>
         <a href="/">Back to homepage</a>

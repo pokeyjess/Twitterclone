@@ -12,6 +12,9 @@
         <a href="/logout/">Log Out</a>
       </button>
       <button>
+        <a href="/author/{{request.user.id}}/">Go to Profile</a>
+      </button>
+      <button>
         <a href="/postform/">Create a Tweetclone</a>
       </button>
       {% else %}
@@ -23,12 +26,16 @@
       </button>
       {% endif %}
     </div>
+    
 
     <h1>Hello, {{ request.user.display_name }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
     <p>-----------------------------------------</p>
     <div>
+
       {% for post in post_list %}
+      {% if post.author in request.user.follows.all or post.author == request.user%}
+
       <h3>{{post.content}}</h3>
       <h4>{{ post.post_time}}</h4>
       <a href="/post/{{ post.id }}/">See post</a>
@@ -38,6 +45,13 @@
         > {{ post.author.display_name }}</a
       ></p>
       <p>-----------------------------------------</p>
+      
+      {% else %}
+      <p>Users you may know: <a href="/author/{{ post.author.id }}"
+        > {{ post.author.display_name }}
+      >{{post.author.display_name}}</a</p>
+
+      {% endif %}
       {% endfor %}
     </div>
   </body>
