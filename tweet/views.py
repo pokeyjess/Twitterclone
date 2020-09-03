@@ -1,10 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from tweet.models import Posts
 from tweet.forms import PostForm
 from twitteruser.models import MyUser
 from notification.models import Message
 import re
 
+@login_required
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
     return render(request, "index.html", {"post_list": post_list})
@@ -27,4 +29,3 @@ def post_form_view(request):
 def post_detail(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
     return render(request, 'post_detail.html', {'post': post})
-    

@@ -25,11 +25,11 @@ urlpatterns = [
     path('login/', login_view),
     path('logout/', logout_view),
     path('signup/', signup_view),
+    path('follow/<int:author_id>/', follow),
+    path('unfollow/<int:author_id>/', unfollow),
     path('notifications/', notifications),
     path('postform/', post_form_view),
     path('<str:display_name>/', author),
     path('post/<int:post_id>/', post_detail),
-    path('follow/<int:author_id>/', follow),
-    path('unfollow/<int:author_id>/', unfollow),
     path('admin/', admin.site.urls),
 ]

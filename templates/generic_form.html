@@ -6,9 +6,11 @@
     <title>Forms</title>
   </head>
   <body>
-    <div>
-      <h3>Please sign in/create an account/submit a Tweetclone</h3>
-    </div>
+    {% if request.user.is_authenticated %}
+    <h3>Submit a Tweetclone</h3>
+    {%else%}
+    <h3>Please sign in/create an account</h3>
+    {% endif %}
     <div>
       <form action="" method="post">
         {% csrf_token %} {{ form.as_p }}
