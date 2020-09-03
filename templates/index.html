@@ -12,7 +12,7 @@
         <a href="/logout/">Log Out</a>
       </button>
       <button>
-        <a href="/author/{{request.user.id}}/">Go to Profile</a>
+        <a href="/{{request.user.display_name}}/">Go to Profile</a>
       </button>
       <button>
         <a href="/postform/">Create a Tweetclone</a>
@@ -26,7 +26,7 @@
       </button>
       {% endif %}
     </div>
-    
+
 
     <h1>Hello, {{ request.user.display_name }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
@@ -41,13 +41,13 @@
       <a href="/post/{{ post.id }}/">See post</a>
     </br>
     <p>Tweetcloned by 
-      <a href="/author/{{ post.author.id }}"
+      <a href="/{{ post.author.display_name }}/"
         > {{ post.author.display_name }}</a
       ></p>
       <p>-----------------------------------------</p>
       
       {% else %}
-      <p>Users you may know: <a href="/author/{{ post.author.id }}"
+      <p>Posts from users you may know: <a href="/{{ post.author.display_name }}/"
         > {{ post.author.display_name }}
       >{{post.author.display_name}}</a</p>
 

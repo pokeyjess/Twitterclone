@@ -7,3 +7,5 @@ class Posts(models.Model):
     post_time = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.content

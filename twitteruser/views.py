@@ -1,17 +1,19 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from twitteruser.models import MyUser
 from tweet.models import Posts
+from notification.models import Message
 
 
 def index(request):
     data = MyUser.objects.all()
     return render(request, "index.html", {'data': data})
 
-def author(request, author_id):
-    author_info = MyUser.objects.filter(id=author_id).first()
+def author(request, display_name):
+    author_info = MyUser.objects.filter(display_name=display_name).first()
     post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
     following = request.user.follows.all()
-    return render(request, "author.html", {"author": author_info, "posts": post_list, "following": following})
+    notifications = Message.objects.all()
+    return render(request, "author.html", {"author": author_info, "posts": post_list, "following": following, "notifications": notifications})
 
 def follow(request, author_id):
     request.user.follows.add(MyUser.objects.get(id=author_id))
@@ -22,4 +24,6 @@ def unfollow(request, author_id):
     return HttpResponseRedirect(reverse('homepage'))
 
 # https://stackoverflow.com/questions/58934300/best-implementation-follow-and-unfollow-in-django-rest-framework
+
+# username as url: https://stackoverflow.com/questions/3013098/django-username-in-url-instead-of-id/16258084
 

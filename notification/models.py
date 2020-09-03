@@ -1,3 +1,12 @@
 from django.db import models
+from django.utils import timezone
+from twitteruser.models import MyUser
+from tweet.models import Posts
 
-# Create your models here.
+
+class Message(models.Model):
+    receiver = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="receiver")
+    msg_content = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=timezone.now)
+
+# https://stackoverflow.com/questions/32687461/how-to-create-a-user-to-user-message-system-using-django

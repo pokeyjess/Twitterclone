@@ -1,0 +1,12 @@
+{% for category in notification %}
+<li>
+  <p>{{ category.msg_content.author }}</p>
+  <p>{{category.msg_content}}</p>
+</li>
+{% endfor %}
+<div>
+  <a href="/">Back to Homepage</a>
+</div>
+<div>
+  <a href="/{{request.user.display_name}}/">Back to Profile</a>
+</div>
