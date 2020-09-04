@@ -12,7 +12,7 @@
     {% for users in user_list %}
     {% if users not in request.user.follows.all %}
     {% if users != request.user %}
-    <a href="{{users}}/">{{users.display_name}}</a> 
+    <a href="{{users}}/">{{users.username}}</a> 
   </br>
     {% endif %}
     {% endif %}
@@ -26,7 +26,7 @@
         <a href="/logout/">Log Out</a>
       </button>
       <button>
-        <a href="/{{request.user.display_name}}/">Go to Profile</a>
+        <a href="/{{request.user.username}}/">Go to Profile</a>
       </button>
       <button>
         <a href="/postform/">Create a Tweetclone</a>
@@ -42,7 +42,7 @@
     </div>
 
 
-    <h1>Hello, {{ request.user.display_name }}!</h1>
+    <h1>Hello, {{ request.user.username }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
     
     <p>-----------------------------------------</p>
@@ -58,8 +58,8 @@
       <a href="/post/{{ post.id }}/">See post</a>
     </br>
     <p>Tweetcloned by 
-      <a href="/{{ post.author.display_name }}/"
-        >@{{ post.author.display_name }}</a
+      <a href="/{{ post.author.username }}/"
+        >@{{ post.author.username }}</a
       ></p>
     </li>
     </ul>

@@ -10,8 +10,8 @@ def index(request):
     following = request.user.follows.all()
     return render(request, "index.html", {'data': data, "following": following})
 
-def author(request, display_name):
-    author_info = MyUser.objects.filter(display_name=display_name).first()
+def author(request, username):
+    author_info = MyUser.objects.filter(username=username).first()
     post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
     following = request.user.follows.all()
     pings = Message.objects.order_by('-created_at')

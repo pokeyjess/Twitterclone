@@ -9,7 +9,7 @@ import re
 @login_required
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
-    user_list = MyUser.objects.all().order_by('display_name')
+    user_list = MyUser.objects.all().order_by('username')
     return render(request, "index.html", {"post_list": post_list, "user_list": user_list})
 
 def post_form_view(request):
@@ -21,7 +21,7 @@ def post_form_view(request):
             if '@' in data['content']:
                 recipient = re.findall(r'@(\w+)', data.get('content'))
                 for receipt in recipient:
-                    message = Message.objects.create(msg_content=tweet, receiver=MyUser.objects.get(display_name=receipt))      
+                    message = Message.objects.create(msg_content=tweet, receiver=MyUser.objects.get(username=receipt))      
             return HttpResponseRedirect(reverse('homepage'))
 
     form = PostForm()

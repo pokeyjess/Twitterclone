@@ -31,5 +31,5 @@ urlpatterns = [
     path('postform/', post_form_view),
     path('post/<int:post_id>/', post_detail),
     path('admin/', admin.site.urls),
-    path('<str:display_name>/', author),
+    path('<str:username>/', author),
 ]
