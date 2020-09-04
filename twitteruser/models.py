@@ -4,7 +4,7 @@ from django.db import models
 from datetime import date
 
 class MyUser(AbstractUser):
-    # display_name = models.CharField(max_length=80)
+    bio = models.TextField(default="There is no biography information associated with this Twittercloner")
     joined_date = models.DateField(auto_now_add=True)
     follows = models.ManyToManyField("self", symmetrical=False)
 

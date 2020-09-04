@@ -4,4 +4,4 @@ from twitteruser.models import MyUser
 
 admin.site.register(MyUser, UserAdmin)
 
-# UserAdmin.fieldsets += ('Custom fields set', {'fields': ('display_name',)}),
+UserAdmin.fieldsets += ('Custom fields set', {'fields': ('bio',)}),

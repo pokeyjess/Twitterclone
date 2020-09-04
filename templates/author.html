@@ -3,10 +3,9 @@
       {% else %}
       <h1>{{ author.username }}</h1>
       <p>Twittercloning since: {{ author.joined_date }}</p>
+      <p>About me: {{author.bio}}</p>
+      
       <h5>Follows: {{ author.follows.count}}</h5>
-      
-      
-      
       {% if request.user.id == author.id %}
       {% if pings.count > 1 %}
       <a href="/notifications/">You Have Notifications!</a>
