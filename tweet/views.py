@@ -9,7 +9,8 @@ import re
 @login_required
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
-    return render(request, "index.html", {"post_list": post_list})
+    user_list = MyUser.objects.all().order_by('display_name')
+    return render(request, "index.html", {"post_list": post_list, "user_list": user_list})
 
 def post_form_view(request):
     if request.method == "POST":

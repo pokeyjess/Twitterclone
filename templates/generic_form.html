@@ -9,8 +9,10 @@
     {% if request.user.is_authenticated %}
     <h3>Submit a Tweetclone</h3>
     {%else%}
-    <h3>Please sign in/create an account</h3>
+    <h3>Please sign in</h3>
+    <a href="/signup/">Sign Up for a New Account</a>
     {% endif %}
+
     <div>
       <form action="" method="post">
         {% csrf_token %} {{ form.as_p }}

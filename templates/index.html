@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Twitterclone</title>
   </head>
+
   <body>
+    <div>
+        <h4>Twittercloners you may know:</h4>
+    {% for users in user_list %}
+    {% if users not in request.user.follows.all %}
+    {% if users != request.user %}
+    <a href="{{users}}/">{{users.display_name}}</a> 
+  </br>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</br>
+  </div>
+
     <div>
       {% if request.user.is_authenticated%}
       <button>
@@ -45,14 +59,9 @@
         > {{ post.author.display_name }}</a
       ></p>
       <p>-----------------------------------------</p>
-      
-      {% else %}
-      <p>Posts from users you may know: <a href="/{{ post.author.display_name }}/"
-        > {{ post.author.display_name }}
-      >{{post.author.display_name}}</a</p>
-
       {% endif %}
       {% endfor %}
     </div>
+
   </body>
 </html>

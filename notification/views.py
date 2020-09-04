@@ -7,7 +7,6 @@ from twitteruser.models import MyUser
 def notifications(request):
     notification = Message.objects.filter(receiver=request.user)
     for view in notification:
-        view.viewed = True
         view.delete()
     return render(request, "notifications.html", {'notification': notification})
 

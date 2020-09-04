@@ -1,8 +1,5 @@
 {% for category in notification %}
-<li>
-  <p>{{ category.msg_content.author }}</p>
-  <p>{{category.msg_content}}</p>
-</li>
+<p>{{category.msg_content}} -- {{ category.msg_content.author }}</p>
 {% endfor %}
 <div>
   <a href="/">Back to Homepage</a>
