@@ -13,8 +13,9 @@ def index(request):
 def author(request, display_name):
     author_info = MyUser.objects.filter(display_name=display_name).first()
     post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
+    following = request.user.follows.all()
     pings = Message.objects.order_by('-created_at')
-    return render(request, "author.html", {"author": author_info, "posts": post_list, "pings": pings})
+    return render(request, "author.html", {"author": author_info, "posts": post_list, "pings": pings, "following": following})
 
 @login_required
 def follow(request, author_id):
