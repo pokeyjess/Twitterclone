@@ -44,11 +44,14 @@
 
     <h1>Hello, {{ request.user.display_name }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
+    
     <p>-----------------------------------------</p>
     <div>
 
       {% for post in post_list %}
       {% if post.author in request.user.follows.all or post.author == request.user%}
+      <ul>
+          <li>
 
       <h3>{{post.content}}</h3>
       <h4>{{ post.post_time}}</h4>
@@ -56,8 +59,10 @@
     </br>
     <p>Tweetcloned by 
       <a href="/{{ post.author.display_name }}/"
-        > {{ post.author.display_name }}</a
+        >@{{ post.author.display_name }}</a
       ></p>
+    </li>
+    </ul>
       <p>-----------------------------------------</p>
       {% endif %}
       {% endfor %}
