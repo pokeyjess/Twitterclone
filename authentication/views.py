@@ -10,8 +10,7 @@ def signup_view(request):
             data = form.cleaned_data
             new_user = MyUser.objects.create_user(username=data.get("username"), password=data.get("password"), bio=data.get("bio"))
             login(request, new_user)
-            return HttpResponseRedirect(reverse("homepage"))
-        
+            return HttpResponseRedirect(reverse("homepage"))  
     form = SignUpForm()
     return render(request, "generic_form.html", {"form": form})
 
@@ -24,7 +23,6 @@ def login_view(request):
             if user:
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
-
     form = LoginForm()
     return render(request, "generic_form.html", {"form": form})
 

@@ -22,26 +22,37 @@
     <h1>{{ post.content}}</h1>
     <h2>{{post.author}}</h2>
     <h3>{{post.post_time}}</h3>
-    <div>
-      <a href="/{{ post.author.username }}/"
-        >More about {{ post.author.username }}</a
-      >
-    </div>
+    
 </br>
-    <div>
-      <button>
-        <a href="/upvote/{{ post.id }}/">Thumb's Up</a>
-      </button>
-      <button>
-        <a href="/downvote/{{ post.id }}/">Thumb's Down</a>
-      </button>
-    </div>
-    <div>
-      <h6>Total votes: {{post.total_votes}}</h6>
-    </div>
 
-    <div>
-      <a href="/">Back to homepage</a>
-    </div>
+
+
+<div>
+{% if request.user.is_authenticated %}
+<div>
+    <a href="/{{ post.author.username }}/"
+      >More about {{ post.author.username }}</a
+    >
+  </div>
+</br>
+<button>
+<a href="/upvote/{{ post.id }}/">Thumb's Up</a>
+</button>
+<button>
+<a href="/downvote/{{ post.id }}/">Thumb's Down</a>
+</button>
+</div>
+{% else %}
+<div>
+    <a href="/{{ post.author.username }}/public/"
+      >More about {{ post.author.username }}</a
+    >
+  </div>
+</br>
+{% endif %}
+<div>
+<h6>Total votes: {{post.total_votes}}</h6>
+</div>
+
   </body>
 </html>

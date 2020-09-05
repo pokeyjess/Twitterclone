@@ -13,11 +13,20 @@ def index(request):
     return render(request, "index.html", {'data': data, "following": following})
 
 def author(request, username):
+    if request.user.is_authenticated:
+        author_info = MyUser.objects.filter(username=username).first()
+        post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
+        following = author_info.follows.all()
+        my_following = request.user.follows.all()
+        pings = Message.objects.order_by('-created_at')
+        return render(request, "author.html", {"author": author_info, "posts": post_list, "pings": pings, "following": following, "my_following": my_following})
+    else:
+        return HttpResponseRedirect('public')
+
+def author_view(request, username):
     author_info = MyUser.objects.filter(username=username).first()
     post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
-    following = request.user.follows.all()
-    pings = Message.objects.order_by('-created_at')
-    return render(request, "author.html", {"author": author_info, "posts": post_list, "pings": pings, "following": following})
+    return render(request, "author.html", {"author": author_info, "posts": post_list})
 
 @login_required
 def edit_author(request, username):

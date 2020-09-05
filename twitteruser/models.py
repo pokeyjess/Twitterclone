@@ -11,3 +11,5 @@ class MyUser(AbstractUser):
 # https://stackoverflow.com/questions/16613013/model-self-dependency-one-to-many-field-implementation/16614136#16614136
 
 # https://stackoverflow.com/questions/2029295/django-datefield-default-options
+
+# https://www.geeksforgeeks.org/verbose_name-django-built-in-field-validation/

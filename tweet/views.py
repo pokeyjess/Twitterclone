@@ -13,6 +13,7 @@ def index(request):
     user_list = MyUser.objects.all().order_by('username')
     return render(request, "index.html", {"post_list": post_list, "user_list": user_list})
 
+@login_required
 def post_form_view(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -24,7 +25,6 @@ def post_form_view(request):
                 for receipt in recipient:
                     message = Message.objects.create(msg_content=tweet, receiver=MyUser.objects.get(username=receipt))      
             return HttpResponseRedirect(reverse('homepage'))
-
     form = PostForm()
     return render(request, "generic_form.html", {"form": form})
 
@@ -45,7 +45,8 @@ def edit_post(request, post_id):
         else:
             form = PostForm(instance=edit)
         return render(request, 'generic_form.html', {'form': form})
-    else: return HttpResponseForbidden("You do not have permission to edit this post")
+    else: 
+        return HttpResponseForbidden("You do not have permission to edit this post")
 
 @login_required
 def remove_post(request, post_id):
@@ -53,20 +54,26 @@ def remove_post(request, post_id):
     if post.author == request.user:
         post.delete()
         return redirect("homepage")
-    else: return HttpResponseForbidden("You do not have permission to remove this post")
+    else:
+        return HttpResponseForbidden("You do not have permission to remove this post")
 
+@login_required
 def up_vote(request, post_id):
     vote = Posts.objects.get(id=post_id)
     vote.total_votes += 1
     vote.save()
+    # return render(request, "index.html", {"vote": vote})
     return redirect(request.META.get('HTTP_REFERER'))
-
+    
+@login_required
 def down_vote(request, post_id):
     vote = Posts.objects.get(id=post_id)
     vote.total_votes -= 1
     vote.save()
+    # return render(request, "index.html")
     return redirect(request.META.get('HTTP_REFERER'))
 
 def votes(request):
     post_list = Posts.objects.all().order_by('-total_votes')
     return render(request, "index.html", {"post_list": post_list})
+

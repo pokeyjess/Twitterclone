@@ -4,8 +4,17 @@
       <h1>{{ author.username }}</h1>
       <p>Twittercloning since: {{ author.joined_date }}</p>
       <p>About me: {{author.bio}}</p>
-      
-      <h5>Follows: {{ author.follows.count}}</h5>
+      <a href="/postform/">Ping me at: @{{author.username}}</a>
+      <h5>Total Twitterclones: {{posts.count}}</h5>
+      <h3>{{ author.username }}'s Twitterclones:</h3>
+      <ul>
+        {% for post in posts %}
+        <li>
+          <a href="/post/{{ post.id }}/">{{ post.content }} -- {{ post.post_time}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
       {% if request.user.id == author.id %}
       
       <a href="edit/">Edit profile</a>
@@ -18,28 +27,19 @@
         >
       </button>
 
+      
       {% if pings.count > 1 %}
       <a href="/notifications/">You Have Notifications!</a>
       {% else %}
       <p>You Have No Notifications</p>
       {% endif %}
-      {% else %}
-      <a href="/postform/">Ping me at: @{{author.username}}</a>
+
       {% endif %}
-
-      <h5>Total Twitterclones: {{posts.count}}</h5>
-      <h3>{{ author.username }}'s Twitterclones:</h3>
-
-      <ul>
-        {% for post in posts %}
-        <li>
-          <a href="/post/{{ post.id }}/">{{ post.content }} -- {{ post.post_time}}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      
+<div>
+      {% if request.user.is_authenticated %}
+      <h5>Follows: {{ author.follows.count}}</h5>
       {% if author.id != request.user.id %}
-      {% if author in following %}
+      {% if author in my_following %}
       <p>You are following this Twittercloner!
       <a href="/unfollow/{{author.id}}">Unfollow</a></p>
       {% else %}
@@ -47,7 +47,9 @@
       <a href="/follow/{{author.id}}">Follow</a></p>
       {% endif %}  
       {% endif %}
-      {% endif %}
+     {% endif %} 
+     {% endif %}
+    </div>  
       <div>
         <a href="/">Back to homepage</a>
       </div>

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from twitteruser.views import index, author, follow, unfollow, edit_author, remove_author
+from twitteruser.views import index, author, follow, unfollow, edit_author, remove_author, author_view
 from authentication.views import signup_view, login_view, logout_view
 from tweet.views import index, post_form_view, post_detail, edit_post, remove_post, up_vote, down_vote, votes
 from notification.views import notifications
@@ -38,5 +38,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('<str:username>/edit/', edit_author),
     path('<str:username>/remove/', remove_author),
+    path('<str:username>/public/', author_view, name="public"),
     path('<str:username>/', author, name="author"),
 ]
