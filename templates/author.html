@@ -7,6 +7,9 @@
       
       <h5>Follows: {{ author.follows.count}}</h5>
       {% if request.user.id == author.id %}
+      
+      <a href="edit/">Edit profile</a>
+
       {% if pings.count > 1 %}
       <a href="/notifications/">You Have Notifications!</a>
       {% else %}

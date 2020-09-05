@@ -6,9 +6,7 @@
     <title>Forms</title>
   </head>
   <body>
-    {% if request.user.is_authenticated %}
-    <h3>Submit a Tweetclone</h3>
-    {%else%}
+    {% if request.user.is_authenticated != True %}
     <h3>Please sign in</h3>
     <a href="/signup/">Sign Up for a New Account</a>
     {% endif %}
