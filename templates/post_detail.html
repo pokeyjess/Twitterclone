@@ -6,11 +6,14 @@
     <title>Post detail</title>
   </head>
   <body>
+    {% if post.author == request.user %}
+    <a href="edit/">Edit post</a>
+    {% endif %}
     <h1>{{ post.content}}</h1>
     <h2>{{post.author}}</h2>
     <h3>{{post.post_time}}</h3>
     <div>
-      <a href="/{{ post.author.display_name }}/"
+      <a href="/{{ post.author.username }}/"
         >More about {{ post.author.username }}</a
       >
     </div>

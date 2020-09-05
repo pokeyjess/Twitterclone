@@ -7,6 +7,8 @@
   </head>
 
   <body>
+
+
     <div>
         <h4>Twittercloners you may know:</h4>
     {% for users in user_list %}
@@ -48,6 +50,7 @@
     <p>-----------------------------------------</p>
     <div>
 
+        
       {% for post in post_list %}
       {% if post.author in request.user.follows.all or post.author == request.user%}
       <ul>
@@ -64,6 +67,7 @@
     </li>
     </ul>
       <p>-----------------------------------------</p>
+      
       {% endif %}
       {% endfor %}
     </div>

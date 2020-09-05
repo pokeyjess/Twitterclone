@@ -1,7 +1,6 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from notification.models import Message
-from twitteruser.models import MyUser
 
 @login_required
 def notifications(request):

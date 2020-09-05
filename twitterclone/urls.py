@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from twitteruser.views import index, author, follow, unfollow
 from authentication.views import signup_view, login_view, logout_view
-from tweet.views import index, post_form_view, post_detail
+from tweet.views import index, post_form_view, post_detail, edit_post
 from notification.views import notifications
 
 urlpatterns = [
@@ -29,7 +29,8 @@ urlpatterns = [
     path('unfollow/<int:author_id>/', unfollow),
     path('notifications/', notifications),
     path('postform/', post_form_view),
-    path('post/<int:post_id>/', post_detail),
+    path('post/<int:post_id>/edit/', edit_post),
+    path('post/<int:post_id>/', post_detail, name="post"),
     path('admin/', admin.site.urls),
     path('<str:username>/', author),
 ]
