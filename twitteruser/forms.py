@@ -4,5 +4,4 @@ from twitteruser.models import MyUser
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = MyUser
-        fields = ['bio']
-        
+        fields = ['bio', 'job_title']

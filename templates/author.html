@@ -3,6 +3,7 @@
       {% else %}
       <h1>{{ author.username }}</h1>
       <p>Twittercloning since: {{ author.joined_date }}</p>
+      <p>What I do: {{author.job_title}}</p>
       <p>About me: {{author.bio}}</p>
       <a href="/postform/">Ping me at: @{{author.username}}</a>
       <h5>Total Twitterclones: {{posts.count}}</h5>

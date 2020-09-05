@@ -29,6 +29,12 @@ def author_view(request, username):
     return render(request, "author.html", {"author": author_info, "posts": post_list})
 
 @login_required
+def author_list(request):
+    user_list = MyUser.objects.all()
+    my_following = request.user.follows.all()
+    return render(request, "author_list.html", {"user_list": user_list, "my_following": my_following})
+
+@login_required
 def edit_author(request, username):
     edit = get_object_or_404(MyUser, username=username)
     if edit.username == request.user.username:

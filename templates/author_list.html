@@ -1,0 +1,18 @@
+
+<div>
+    <a href="/">Back to homepage</a>
+  </div>
+<div>
+<h4>Your connections:</h4>
+{% for users in user_list %}
+{% if users in request.user.follows.all %}
+{% if users != request.user %}
+<a href="/{{users.username}}/">{{users.username}}</a> 
+</br>
+<p>What I do: {{users.job_title}}</p>
+<p>----------------------------------</p>
+{% endif %}
+{% endif %}
+{% endfor %}
+</br>
+</div>
