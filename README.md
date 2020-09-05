@@ -1,10 +1,16 @@
 # Twitterclone -- attack of the Kenzie clones!
 
-## Features
+## Overview
 
 Here's my version of a Twitter 'clone' application, using Django and meeting all of the rubric requirements for this Q-4 project at Kenzie Academy.
 
 Just like the original Twitter, this app allows you to post 140-character "Tweets" for your followers to see. Each post is marked with a time stamp.
+
+Create a profile page with an "About Me" section. Follow other users to see their posts, and tag users to bring their attention to your posts. Edit your posts, and your profile. Even delete them, if you must.
+
+Feel free to invite non-logged in, non-users, to view your profile and your individual posts, gaining you more potential followers, and more traffic to your page.
+
+## Details of features
 
 If you try to access the homepage without logging in, you will be directed to a login page, which also includes a link to the signup page, in case you don't already have an account. Signing up for an account will log you in automatically.
 

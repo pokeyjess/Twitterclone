@@ -34,7 +34,14 @@ def edit_author(request, username):
         return render(request, 'generic_form.html', {'form': form})
     else: return HttpResponseForbidden("You do not have permission to edit this post")
 
-
+@login_required
+def remove_author(request, username):
+    profile = get_object_or_404(MyUser, username=username)
+    if profile.username == request.user.username:
+        profile.delete()
+        return redirect("homepage")
+    else: return HttpResponseForbidden("You do not have permission to remove this profile")
+    
 
 @login_required
 def follow(request, author_id):

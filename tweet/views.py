@@ -46,3 +46,12 @@ def edit_post(request, post_id):
             form = PostForm(instance=edit)
         return render(request, 'generic_form.html', {'form': form})
     else: return HttpResponseForbidden("You do not have permission to edit this post")
+
+@login_required
+def remove_post(request, post_id):
+    post = get_object_or_404(Posts, id=post_id)
+    if post.author == request.user:
+        post.delete()
+        return redirect("homepage")
+    else: return HttpResponseForbidden("You do not have permission to remove this post")
+    

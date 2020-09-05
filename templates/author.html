@@ -9,6 +9,14 @@
       {% if request.user.id == author.id %}
       
       <a href="edit/">Edit profile</a>
+      <button>
+        <a
+          class="bar"
+          href="remove/"
+          onclick="return confirm('Are you sure you want to delete this profile?')"
+          >Delete profile</a
+        >
+      </button>
 
       {% if pings.count > 1 %}
       <a href="/notifications/">You Have Notifications!</a>
