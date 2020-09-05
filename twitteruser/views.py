@@ -42,7 +42,6 @@ def remove_author(request, username):
         return redirect("homepage")
     else: return HttpResponseForbidden("You do not have permission to remove this profile")
     
-
 @login_required
 def follow(request, author_id):
     request.user.follows.add(MyUser.objects.get(id=author_id))

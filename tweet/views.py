@@ -54,4 +54,19 @@ def remove_post(request, post_id):
         post.delete()
         return redirect("homepage")
     else: return HttpResponseForbidden("You do not have permission to remove this post")
-    
+
+def up_vote(request, post_id):
+    vote = Posts.objects.get(id=post_id)
+    vote.total_votes += 1
+    vote.save()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+def down_vote(request, post_id):
+    vote = Posts.objects.get(id=post_id)
+    vote.total_votes -= 1
+    vote.save()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+def votes(request):
+    post_list = Posts.objects.all().order_by('-total_votes')
+    return render(request, "index.html", {"post_list": post_list})

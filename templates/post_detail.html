@@ -27,6 +27,19 @@
         >More about {{ post.author.username }}</a
       >
     </div>
+</br>
+    <div>
+      <button>
+        <a href="/upvote/{{ post.id }}/">Thumb's Up</a>
+      </button>
+      <button>
+        <a href="/downvote/{{ post.id }}/">Thumb's Down</a>
+      </button>
+    </div>
+    <div>
+      <h6>Total votes: {{post.total_votes}}</h6>
+    </div>
+
     <div>
       <a href="/">Back to homepage</a>
     </div>

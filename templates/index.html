@@ -64,6 +64,19 @@
       <a href="/{{ post.author.username }}/"
         >@{{ post.author.username }}</a
       ></p>
+
+      <div>
+        <button>
+          <a href="/upvote/{{ post.id }}/">Thumb's Up</a>
+        </button>
+        <button>
+          <a href="/downvote/{{ post.id }}/">Thumb's Down</a>
+        </button>
+      </div>
+      <div>
+        <h6>Total votes: {{post.total_votes}}</h6>
+      </div>
+
     </li>
     </ul>
       <p>-----------------------------------------</p>
