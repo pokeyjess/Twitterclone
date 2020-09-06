@@ -5,10 +5,10 @@ from authentication.forms import SignUpForm, LoginForm
 
 def signup_view(request):
     if request.method == "POST":
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST,request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            new_user = MyUser.objects.create_user(username=data.get("username"), password=data.get("password"), bio=data.get("bio"))
+            new_user = MyUser.objects.create_user(username=data.get("username"), password=data.get("password"), bio=data.get("bio"), job_title=data.get("job_title"), profile_image=data.get("profile_image"))
             login(request, new_user)
             return HttpResponseRedirect(reverse("homepage"))  
     form = SignUpForm()

@@ -6,6 +6,7 @@ from datetime import date
 class MyUser(AbstractUser):
     bio = models.TextField(null=True, blank=True, verbose_name="About Me")
     job_title = models.CharField(max_length=80, null=True, blank=True, default="", verbose_name="What I Do")
+    profile_image = models.ImageField(upload_to='images/', null=True, blank=True)
     joined_date = models.DateField(auto_now_add=True)
     follows = models.ManyToManyField("self", symmetrical=False)
 

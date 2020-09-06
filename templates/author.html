@@ -2,6 +2,26 @@
       <h2>The author you are looking for does not exist</h2>
       {% else %}
       <h1>{{ author.username }}</h1>
+
+      <div>
+        {% if author.profile_image %}
+        <img
+          src="{{ author.profile_image.url }}"
+          alt="{{ author.username }}"
+          style="width: 150px; max-height: 200px;"
+        />
+        {% else %}
+        <img
+          src="/media/images/filler_photo.jpg"
+          alt="{{ author.username }}"
+          style="width: 150px; max-height: 200px;"
+        />
+
+        {% endif %}
+      </div>
+
+
+
       <p>Twittercloning since: {{ author.joined_date }}</p>
       <p>What I do: {{author.job_title}}</p>
       <p>About me: {{author.bio}}</p>
@@ -27,15 +47,16 @@
           >Delete profile</a
         >
       </button>
-
-      
-      {% if pings.count > 1 %}
+      {% if pings.count >= 1 %}
       <a href="/notifications/">You Have Notifications!</a>
       {% else %}
       <p>You Have No Notifications</p>
       {% endif %}
-
       {% endif %}
+
+      
+
+     
 <div>
       {% if request.user.is_authenticated %}
       <h5>Follows: {{ author.follows.count}}</h5>

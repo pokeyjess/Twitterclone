@@ -52,10 +52,10 @@
     
     <p>-----------------------------------------</p>
     <div>
-
-
+        
         
       {% for post in post_list %}
+
       {% if post.author in request.user.follows.all or post.author == request.user%}
       <ul>
           <li>
