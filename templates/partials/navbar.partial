@@ -1,0 +1,39 @@
+      
+   <div>
+      {% if request.user.is_authenticated%}
+      <button>
+        <a href="/logout/">Log Out</a>
+      </button>
+      <button>
+        <a href="/{{request.user.username}}/">Profile</a>
+      </button>
+      <button>
+        <a href="/list/">Your connections</a>
+      </button>
+      <button>
+        <a href="/">Newsfeed</a>
+      </button>
+      <button>
+        <a href="/postform/">Create a Tweetclone</a>
+      </button>
+      {% else %}
+      <button>
+        <a href="/login/">Log In</a>
+      </button>
+      <button>
+        <a href="/signup/">Create an account</a>
+      </button>
+      {% endif %}
+    </div>
+</br>
+<div>
+{% if request.user.is_authenticated %}
+{% if pings.count >= 1 %}
+      <a href="/notifications/">You Have Notifications!</a>
+      {% else %}
+      <p>You Have No Notifications</p>
+      {% endif %}
+      {% endif %}
+
+</div>
+

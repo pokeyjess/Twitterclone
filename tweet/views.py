@@ -11,7 +11,8 @@ import re
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
     user_list = MyUser.objects.all().order_by('username')
-    return render(request, "index.html", {"post_list": post_list, "user_list": user_list})
+    pings = Message.objects.filter(receiver=request.user)
+    return render(request, "index.html", {"post_list": post_list, "user_list": user_list, "pings": pings})
 
 @login_required
 def post_form_view(request):
@@ -29,6 +30,14 @@ def post_form_view(request):
     return render(request, "generic_form.html", {"form": form})
 
 def post_detail(request, post_id):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Posts, id=post_id)
+        pings = Message.objects.filter(receiver=request.user)
+        return render(request, 'post_detail.html', {'post': post, 'pings': pings})
+    else:
+        return HttpResponseRedirect('public')
+
+def public_post(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
     return render(request, 'post_detail.html', {'post': post})
 

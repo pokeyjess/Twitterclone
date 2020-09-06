@@ -1,13 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
 
-<div>
-    <a href="/">Back to homepage</a>
-  </div>
-<div>
 <h4>Your connections:</h4>
 {% for users in user_list %}
 {% if users in request.user.follows.all %}
 {% if users != request.user %}
 <a href="/{{users.username}}/">{{users.username}}</a> 
+</br>
+</br>
+
+    {% if users.profile_image %}
+    <img
+      src="{{ users.profile_image.url }}"
+      alt="{{ users.username }}"
+      style="width: 50px; max-height: 80px;"
+    />
+    {% else %}
+    <img
+      src="/media/images/filler_photo.jpg"
+      alt="{{ users.username }}"
+      style="width: 40px; max-height: 80px;"
+    />
+
+    {% endif %}
+
 </br>
 <p>What I do: {{users.job_title}}</p>
 <p>----------------------------------</p>
@@ -16,3 +32,5 @@
 {% endfor %}
 </br>
 </div>
+
+{% endblock %}

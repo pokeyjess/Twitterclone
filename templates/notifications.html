@@ -1,13 +1,9 @@
-
+{% extends "base.html" %}
+{% block content %}
 <ul>
 {% for category in notification %}
 <li>Sent by: @{{ category.msg_content.author }} </br>Message: {{category.msg_content}} </li>
 {% endfor %}
 </ul>
-<div>
-  <a href="/">Back to Homepage</a>
-</div>
-<div>
-  <a href="/{{request.user.username}}/">Back to Profile</a>
-</div>
-</br>
+
+{% endblock %}

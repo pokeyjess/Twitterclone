@@ -10,7 +10,8 @@ from twitteruser.forms import ProfileForm
 def index(request):
     data = MyUser.objects.all()
     following = request.user.follows.all()
-    return render(request, "index.html", {'data': data, "following": following})
+    pings = Message.objects.filter(receiver=request.user)
+    return render(request, "index.html", {'data': data, "following": following, "pings": pings})
 
 def author(request, username):
     if request.user.is_authenticated:
@@ -32,7 +33,8 @@ def author_view(request, username):
 def author_list(request):
     user_list = MyUser.objects.all()
     my_following = request.user.follows.all()
-    return render(request, "author_list.html", {"user_list": user_list, "my_following": my_following})
+    pings = Message.objects.filter(receiver=request.user)
+    return render(request, "author_list.html", {"user_list": user_list, "my_following": my_following, "pings": pings})
 
 @login_required
 def edit_author(request, username):
@@ -52,10 +54,13 @@ def edit_author(request, username):
 @login_required
 def remove_author(request, username):
     profile = get_object_or_404(MyUser, username=username)
-    if profile.username == request.user.username:
+    if profile.is_staff:
+        return HttpResponseForbidden("Staff profiles cannot be deleted from the browser. See an admin")
+    elif profile.username == request.user.username:
         profile.delete()
         return redirect("homepage")
-    else: return HttpResponseForbidden("You do not have permission to remove this profile")
+    else:
+        return HttpResponseForbidden("You do not have permission to remove this profile")
     
 @login_required
 def follow(request, author_id):

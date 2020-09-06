@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Twitterclone</title>
-  </head>
-
-  <body>
+{% extends "base.html" %}
+{% block content %}
+  
 
 
     <div>
@@ -22,43 +16,16 @@
 </br>
   </div>
 
-    <div>
-      {% if request.user.is_authenticated%}
-      <button>
-        <a href="/logout/">Log Out</a>
-      </button>
-      <button>
-        <a href="/{{request.user.username}}/">Go to Profile</a>
-      </button>
-      <button>
-        <a href="/postform/">Create a Tweetclone</a>
-      </button>
-      <button>
-        <a href="/list/">Your connections</a>
-      </button>
-      {% else %}
-      <button>
-        <a href="/login/">Log In</a>
-      </button>
-      <button>
-        <a href="/signup/">Create an account</a>
-      </button>
-      {% endif %}
-    </div>
-
 
     <h1>Hello, {{ request.user.username }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
     
     <p>-----------------------------------------</p>
     <div>
-        
-        
       {% for post in post_list %}
 
       {% if post.author in request.user.follows.all or post.author == request.user%}
       <ul>
-          <li>
 
       <h3>{{post.content}}</h3>
       <h4>{{ post.post_time}}</h4>
@@ -69,17 +36,20 @@
         >@{{ post.author.username }}</a
       ></p>
 
-      <div>
-        <button>
-          <a href="/upvote/{{ post.id }}/">Thumb's Up</a>
-        </button>
-        <button>
-          <a href="/downvote/{{ post.id }}/">Thumb's Down</a>
-        </button>
-      </div>
-      <div>
-        <h6>Total votes: {{post.total_votes}}</h6>
-      </div>
+      {% if post.author.profile_image %}
+    <img
+      src="{{ post.author.profile_image.url }}"
+      alt="{{ post.author.username }}"
+      style="width: 50px; max-height: 80px;"
+    />
+    {% else %}
+    <img
+      src="/media/images/filler_photo.jpg"
+      alt="{{ users.username }}"
+      style="width: 40px; max-height: 80px;"
+    />
+
+    {% endif %}
 
     </li>
     </ul>
@@ -88,6 +58,5 @@
       {% endif %}
       {% endfor %}
     </div>
-
-  </body>
-</html>
+{% endblock %}
+  

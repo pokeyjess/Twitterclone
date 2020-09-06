@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from twitteruser.views import index, author, follow, unfollow, edit_author, remove_author, author_view, author_list
 from authentication.views import signup_view, login_view, logout_view
-from tweet.views import index, post_form_view, post_detail, edit_post, remove_post, up_vote, down_vote, votes
+from tweet.views import index, post_form_view, post_detail, edit_post, remove_post, up_vote, down_vote, votes, public_post
 from notification.views import notifications
 
 urlpatterns = [
@@ -36,6 +36,7 @@ urlpatterns = [
     path('upvote/<int:post_id>/', up_vote),
     path('downvote/<int:post_id>/', down_vote),
     path('votes/', votes),
+    path('post/<int:post_id>/public/', public_post, name="public_post"),
     path('post/<int:post_id>/', post_detail, name="post"),
     path('admin/', admin.site.urls),
     path('list/', author_list),

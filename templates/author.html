@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+
 {% if not author %}
       <h2>The author you are looking for does not exist</h2>
       {% else %}
@@ -21,8 +24,8 @@
       </div>
 
 
-
       <p>Twittercloning since: {{ author.joined_date }}</p>
+      <h5>Follows: {{ author.follows.count}}</h5>
       <p>What I do: {{author.job_title}}</p>
       <p>About me: {{author.bio}}</p>
       <a href="/postform/">Ping me at: @{{author.username}}</a>
@@ -37,8 +40,9 @@
       </ul>
 
       {% if request.user.id == author.id %}
-      
+      <button>
       <a href="edit/">Edit profile</a>
+    </button>
       <button>
         <a
           class="bar"
@@ -47,32 +51,27 @@
           >Delete profile</a
         >
       </button>
-      {% if pings.count >= 1 %}
-      <a href="/notifications/">You Have Notifications!</a>
-      {% else %}
-      <p>You Have No Notifications</p>
       {% endif %}
-      {% endif %}
-
       
-
-     
 <div>
       {% if request.user.is_authenticated %}
-      <h5>Follows: {{ author.follows.count}}</h5>
+      
+      <div>
       {% if author.id != request.user.id %}
       {% if author in my_following %}
-      <p>You are following this Twittercloner!
-      <a href="/unfollow/{{author.id}}">Unfollow</a></p>
+      <button>
+      <a href="/unfollow/{{author.id}}">Unfollow</a>
+    </button>
       {% else %}
-      <p>Do you know this Twittercloner?
-      <a href="/follow/{{author.id}}">Follow</a></p>
+      <button>
+      <a href="/follow/{{author.id}}">Follow</a>
+    </button>
       {% endif %}  
       {% endif %}
      {% endif %} 
      {% endif %}
-    </div>  
-      <div>
-        <a href="/">Back to homepage</a>
-      </div>
     </div>
+    </div>  
+    </div>
+
+{% endblock %}
