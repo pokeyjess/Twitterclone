@@ -1,22 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  
 
-
-    <div>
-        <h4>Twittercloners you may know:</h4>
-    {% for users in user_list %}
-    {% if users not in request.user.follows.all %}
-    {% if users != request.user %}
-    <a href="{{users}}/">{{users.username}}</a> 
-  </br>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</br>
-  </div>
-
-
+  <div id="main-column" class="container" style="display: block; text-align: center;">
     <h1>Hello, {{ request.user.username }}!</h1>
     <h5>Tweetcloning since: {{ request.user.joined_date }}</h5>
     
@@ -29,6 +14,7 @@
 
       <h3>{{post.content}}</h3>
       <h4>{{ post.post_time}}</h4>
+      <h5>Thumb's up: {{ post.total_votes}}</h5>
       <a href="/post/{{ post.id }}/">See post</a>
     </br>
     <p>Tweetcloned by 
@@ -37,13 +23,13 @@
       ></p>
 
       {% if post.author.profile_image %}
-    <img
+    <img class="img-thumbnail"
       src="{{ post.author.profile_image.url }}"
       alt="{{ post.author.username }}"
       style="width: 50px; max-height: 80px;"
     />
     {% else %}
-    <img
+    <img class="img-thumbnail"
       src="/media/images/filler_photo.jpg"
       alt="{{ users.username }}"
       style="width: 40px; max-height: 80px;"
@@ -57,6 +43,7 @@
       
       {% endif %}
       {% endfor %}
+    </div>
     </div>
 {% endblock %}
   

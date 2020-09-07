@@ -2,9 +2,9 @@
 {% block content %}
 
 <div id="main-column" class="container" style="display: block; text-align: center;">
-<h4>Your connections:</h4>
+<h4>Twittercloners you may know:</h4>
 {% for users in user_list %}
-{% if users in request.user.follows.all %}
+{% if users not in request.user.follows.all %}
 {% if users != request.user %}
 <a href="/{{users.username}}/">{{users.username}}</a> 
 </br>

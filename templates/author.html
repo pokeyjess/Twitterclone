@@ -1,77 +1,79 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-{% if not author %}
-      <h2>The author you are looking for does not exist</h2>
-      {% else %}
-      <h1>{{ author.username }}</h1>
+<div id="main-column" class="container" style="display: block; text-align: center">
+  {% if not author %}
+  <h2>The author you are looking for does not exist</h2>
+  {% else %}
+  <h1>{{ author.username }}</h1>
 
-      <div>
-        {% if author.profile_image %}
-        <img
-          src="{{ author.profile_image.url }}"
-          alt="{{ author.username }}"
-          style="width: 150px; max-height: 200px;"
-        />
-        {% else %}
-        <img
-          src="/media/images/filler_photo.jpg"
-          alt="{{ author.username }}"
-          style="width: 150px; max-height: 200px;"
-        />
+  <div>
+    {% if author.profile_image %}
+    <img
+      class="img-thumbnail"
+      src="{{ author.profile_image.url }}"
+      alt="{{ author.username }}"
+      style="width: 150px; max-height: 200px"
+    />
+    {% else %}
+    <img
+      class="img-thumbnail"
+      src="/media/images/filler_photo.jpg"
+      alt="{{ author.username }}"
+      style="width: 150px; max-height: 200px"
+    />
 
-        {% endif %}
-      </div>
+    {% endif %}
+  </div>
+
+  <i>Twittercloning since: {{ author.joined_date }}</i>
+  <h5>Follows: {{ author.follows.count}}</h5>
+  <p>What I do: {{author.job_title}}</p>
+  <p>About me: {{author.bio}}</p>
+
+  {% if request.user.id == author.id %}
+  <a class="glyphicon glyphicon-pencil" href="edit/"></a>
+  <a class="glyphicon glyphicon-trash" href="remove/" onclick="return confirm('Are you sure you want to delete this profile?')"></a>
+  {% endif %}
+</br>
+</br>
+</br>
 
 
-      <p>Twittercloning since: {{ author.joined_date }}</p>
-      <h5>Follows: {{ author.follows.count}}</h5>
-      <p>What I do: {{author.job_title}}</p>
-      <p>About me: {{author.bio}}</p>
-      <a href="/postform/">Ping me at: @{{author.username}}</a>
-      <h5>Total Twitterclones: {{posts.count}}</h5>
-      <h3>{{ author.username }}'s Twitterclones:</h3>
-      <ul>
-        {% for post in posts %}
-        <li>
-          <a href="/post/{{ post.id }}/">{{ post.content }} -- {{ post.post_time}}</a>
-        </li>
-        {% endfor %}
-      </ul>
+  <button class="btn btn-sm">
+    Ping me at:
+    <a href="/postform/">@{{ author.username }}</a>
+  </button>
+</br>
+</br>
+  
+    {% if request.user.is_authenticated %}
 
-      {% if request.user.id == author.id %}
+    
+      {% if author.id != request.user.id %} {% if author in my_following %}
       <button>
-      <a href="edit/">Edit profile</a>
-    </button>
-      <button>
-        <a
-          class="bar"
-          href="remove/"
-          onclick="return confirm('Are you sure you want to delete this profile?')"
-          >Delete profile</a
-        >
+        <a href="/unfollow/{{author.id}}">Unfollow</a>
       </button>
-      {% endif %}
-      
-<div>
-      {% if request.user.is_authenticated %}
-      
-      <div>
-      {% if author.id != request.user.id %}
-      {% if author in my_following %}
-      <button>
-      <a href="/unfollow/{{author.id}}">Unfollow</a>
-    </button>
       {% else %}
       <button>
-      <a href="/follow/{{author.id}}">Follow</a>
-    </button>
-      {% endif %}  
-      {% endif %}
-     {% endif %} 
-     {% endif %}
-    </div>
-    </div>  
-    </div>
+        <a href="/follow/{{author.id}}">Follow</a>
+      </button>
+      {% endif %} {% endif %} {% endif %}
+    
+    {% endif %}
+  
+</br>
+  <h5>Total Twitterclones: {{posts.count}}</h5>
+  <h3>{{ author.username }}'s Twitterclones:</h3>
+  <ul>
+    {% for post in posts %}
+    <li class="text-left">
+      <a href="/post/{{ post.id }}/"
+        >{{ post.content }} -- {{ post.post_time}}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
 
+  
+</div>
 {% endblock %}

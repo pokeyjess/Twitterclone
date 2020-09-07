@@ -37,6 +37,13 @@ def author_list(request):
     return render(request, "author_list.html", {"user_list": user_list, "my_following": my_following, "pings": pings})
 
 @login_required
+def find_list(request):
+    user_list = MyUser.objects.all().order_by('username')
+    my_following = request.user.follows.all()
+    pings = Message.objects.filter(receiver=request.user)
+    return render(request, "find_list.html", {"user_list": user_list, "my_following": my_following, "pings": pings})
+
+@login_required
 def edit_author(request, username):
     edit = get_object_or_404(MyUser, username=username)
     if edit.username == request.user.username:

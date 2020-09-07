@@ -1,6 +1,10 @@
+{% extends "base.html" %} {% block content %} 
+
+</br>
+
 {% if request.user.is_authenticated != True %}
 <h3>Please sign in</h3>
-<a href="/signup/">Sign Up for a New Account</a>
+</br>
 {% endif %}
 
 <div>
@@ -9,3 +13,4 @@
     <input type="submit" value="Submit!" />
   </form>
 </div>
+{% endblock %}

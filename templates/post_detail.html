@@ -1,52 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% if post.author == request.user %}
-    <a href="edit/">Edit post</a>
 
-    <button>
-      <a
-        class="bar"
-        href="remove/"
-        onclick="return confirm('Are you sure you want to delete this post?')"
-        >Delete post</a
-      >
-    </button>
+<div id="main-column" class="container" style="display: block; text-align: center;">
 
-    {% endif %}
-    <h1>{{ post.content}}</h1>
-    <h2>{{post.author}}</h2>
-    <h3>{{post.post_time}}</h3>
+    <h2>{{ post.content}}</h2>
+    <p><i>{{post.post_time}}</i></p>
     
 </br>
-
-
-
+</br>
 <div>
 {% if request.user.is_authenticated %}
 <div>
+    <button class="btn btn-sm">
+        Posted by: 
     <a href="/{{ post.author.username }}/"
-      >More about {{ post.author.username }}</a
+      >{{ post.author.username }}</a
     >
+</button>
   </div>
 </br>
-<button>
-<a href="/upvote/{{ post.id }}/">Thumb's Up</a>
-</button>
-<button>
-<a href="/downvote/{{ post.id }}/">Thumb's Down</a>
-</button>
-</div>
+</br>
+</br>
+<a class="glyphicon glyphicon-thumbs-up" href="/upvote/{{ post.id }}/"></a>
+<a class="glyphicon glyphicon-thumbs-down" href="/downvote/{{ post.id }}/"></a>
+
 {% else %}
 <div>
     <a href="/{{ post.author.username }}/public/"
-      >More about {{ post.author.username }}</a
+      >Posted by: {{ post.author.username }}</a
     >
   </div>
 </br>
 {% endif %}
 <div>
-<h6>Total votes: {{post.total_votes}}</h6>
+<p class="text-center"><i>Thumb's up: {{post.total_votes}}</i></p>
+
+</div>
+
+</div>
+</br>
+</br>
+<div>
+    {% if post.author == request.user %}
+<a class="glyphicon glyphicon-pencil" href="edit/"></a>
+<a class="glyphicon glyphicon-trash" href="remove/" onclick="return confirm('Are you sure you want to delete this post?')"></a>
+{% endif %}
 </div>
 
 {% endblock %}

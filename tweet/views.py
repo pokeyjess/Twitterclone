@@ -10,9 +10,9 @@ import re
 @login_required
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
-    user_list = MyUser.objects.all().order_by('username')
+    # user_list = MyUser.objects.all().order_by('username')
     pings = Message.objects.filter(receiver=request.user)
-    return render(request, "index.html", {"post_list": post_list, "user_list": user_list, "pings": pings})
+    return render(request, "index.html", {"post_list": post_list, "pings": pings})
 
 @login_required
 def post_form_view(request):

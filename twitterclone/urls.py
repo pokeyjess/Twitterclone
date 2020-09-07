@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from twitteruser.views import index, author, follow, unfollow, edit_author, remove_author, author_view, author_list
+from twitteruser.views import index, author, follow, unfollow, edit_author, remove_author, author_view, author_list, find_list
 from authentication.views import signup_view, login_view, logout_view
 from tweet.views import index, post_form_view, post_detail, edit_post, remove_post, up_vote, down_vote, votes, public_post
 from notification.views import notifications
@@ -40,6 +40,7 @@ urlpatterns = [
     path('post/<int:post_id>/', post_detail, name="post"),
     path('admin/', admin.site.urls),
     path('list/', author_list),
+    path('find/', find_list),
     path('<str:username>/edit/', edit_author),
     path('<str:username>/remove/', remove_author),
     path('<str:username>/public/', author_view, name="public"),
