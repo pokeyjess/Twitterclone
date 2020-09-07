@@ -45,6 +45,7 @@ def find_list(request):
 
 @login_required
 def edit_author(request, username):
+    pings = Message.objects.filter(receiver=request.user)
     edit = get_object_or_404(MyUser, username=username)
     if edit.username == request.user.username:
         if request.method == "POST":
@@ -55,7 +56,7 @@ def edit_author(request, username):
                 return redirect('author', username)
         else:
             form = ProfileForm(instance=edit)
-        return render(request, 'generic_form.html', {'form': form})
+        return render(request, 'generic_form.html', {'form': form, 'pings': pings})
     else: return HttpResponseForbidden("You do not have permission to edit this post")
 
 @login_required

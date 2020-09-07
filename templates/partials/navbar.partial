@@ -1,5 +1,7 @@
       
    <div>
+   <a id="notify" class="glyphicon glyphicon-backward" href="javascript:history.go(-1)"></a>
+
       {% if request.user.is_authenticated%}
       <button class="btn btn-sm">
         <a href="/logout/">Log Out</a>
@@ -19,6 +21,11 @@
       <button class="btn btn-sm">
         <a href="/postform/">Create a Tweetclone</a>
       </button>
+      {% if pings.count >= 1 %}
+      <a id="notify" class="glyphicon glyphicon-bell" href="/notifications/">{{ pings.count }}</a>
+      {% else %}
+      <a id="notify" class="glyphicon glyphicon-remove" href="/notifications/">0</a>
+      {% endif %}
       {% else %}
       <button class="btn btn-sm">
         <a href="/login/">Log In</a>
@@ -30,14 +37,7 @@
     </div>
 </br>
 <div>
-<button class="btn btn-sm">
-{% if request.user.is_authenticated %}
-{% if pings.count >= 1 %}
-      <a href="/notifications/">You Have Notifications!</a>
-      {% else %}
-      <a href="/notifications/">You Have No New Notifications</a>
-      {% endif %}
-      {% endif %}
-</button>
-</div>
+
+
+
 

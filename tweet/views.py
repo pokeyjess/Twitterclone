@@ -16,6 +16,7 @@ def index(request):
 
 @login_required
 def post_form_view(request):
+    pings = Message.objects.filter(receiver=request.user)
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -27,7 +28,7 @@ def post_form_view(request):
                     message = Message.objects.create(msg_content=tweet, receiver=MyUser.objects.get(username=receipt))      
             return HttpResponseRedirect(reverse('homepage'))
     form = PostForm()
-    return render(request, "generic_form.html", {"form": form})
+    return render(request, "generic_form.html", {"form": form, "pings": pings})
 
 def post_detail(request, post_id):
     if request.user.is_authenticated:
@@ -43,6 +44,7 @@ def public_post(request, post_id):
 
 @login_required
 def edit_post(request, post_id):
+    pings = Message.objects.filter(receiver=request.user)
     edit = get_object_or_404(Posts, id=post_id)
     if edit.author == request.user:
         if request.method == "POST":
@@ -53,7 +55,7 @@ def edit_post(request, post_id):
                 return redirect('post', post_id)
         else:
             form = PostForm(instance=edit)
-        return render(request, 'generic_form.html', {'form': form})
+        return render(request, 'generic_form.html', {'form': form, 'pings': pings})
     else: 
         return HttpResponseForbidden("You do not have permission to edit this post")
 
@@ -71,7 +73,6 @@ def up_vote(request, post_id):
     vote = Posts.objects.get(id=post_id)
     vote.total_votes += 1
     vote.save()
-    # return render(request, "index.html", {"vote": vote})
     return redirect(request.META.get('HTTP_REFERER'))
     
 @login_required
@@ -79,7 +80,6 @@ def down_vote(request, post_id):
     vote = Posts.objects.get(id=post_id)
     vote.total_votes -= 1
     vote.save()
-    # return render(request, "index.html")
     return redirect(request.META.get('HTTP_REFERER'))
 
 def votes(request):

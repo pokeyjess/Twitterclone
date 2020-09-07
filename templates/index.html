@@ -7,8 +7,7 @@
     
     <p>-----------------------------------------</p>
     <div>
-      {% for post in post_list %}
-
+    {% for post in post_list %}
       {% if post.author in request.user.follows.all or post.author == request.user%}
       <ul>
 
@@ -36,13 +35,14 @@
     />
 
     {% endif %}
-
+   
     </li>
     </ul>
       <p>-----------------------------------------</p>
-      
       {% endif %}
+      
       {% endfor %}
+      
     </div>
     </div>
 {% endblock %}
