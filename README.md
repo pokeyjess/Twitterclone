@@ -14,11 +14,13 @@ Feel free to invite non-logged in, non-users, to view your profile and your indi
 
 If you try to access the homepage without logging in, you will be directed to a login page, which also includes a link to the signup page, in case you don't already have an account. Signing up for an account will log you in automatically.
 
-The homepage lists all of your “Tweets,” along with the posts of the people you are following. A list of users who you are NOT following will also appear on the homepage, so you can browse to see if there’s anyone you might want to connect with. Click on the link to see a list of your "connections", including a bit about them and their profile pic.
+The homepage lists all of your “Tweets,” along with the posts of the people you are following. 
+
+From the navigation bar, which appears on all of the pages, you can: go to your profile, return to your newsfeed, create a new Twitterclone or log out of the app. Two separate lists are also available from the navigation bar -- a list of users you are currently following, and a list of ones you have not yet "followed.
 
 You can easily choose to "follow" or "unfollow" other users with the buttons on their profile pages. If you follow them already, the only option will be to "unfollow", while if you are not following them yet, only the "follow" button will appear on the page.
 
-Your profile page shows whether you have "notifications" -- if you have them, it will provide a link taking you to a page listing the messages you are tagged in. Viewing this page will then clear the page and show no notifications. The posts will still appear on your homepage post feed, if they are from one of your "connections."
+If you have notifications, a bell will appear to the very right of the navigation bar, with a count of how many notifications you have. If there are no notifications, an "X" will appear instead. Both link to a page listing the messages you have been tagged in, with the notifications automatically clearing when you visit this page.
 
 To send notifications, simply create a Twitterclone, and include the '@' symbol, followed by the user's "display name".
 
@@ -30,9 +32,9 @@ Users who are not logged in can also view a detailed page for each of your posts
 
 ## Work in progress
 
-Still need to add some styling and formatting to the project! I'm hoping to also add some screenshots. 
+I still need to add some more styling and formatting to the project! I'm hoping to also add some screenshots. 
 
-I am already working on an updated version, and have some ideas for fetaures I'd like to add/improve. As I grow my Django skills, hopefully the functionality of my Twitterclone will grow as well.
+I am already working on an updated version, and have some ideas for features I'd like to add/improve. As I grow my Django skills, hopefully the functionality of my Twitterclone will grow as well. I am open to suggestions!
 
 Once changes are made, the repo and this README will be updated. Stay tuned!
 
@@ -43,7 +45,9 @@ Poetry >= 0.12
 
 ## Authors
 
-Assistance provided by instructors and facilitators at Kenzie Academy. Special shout-outs to Joe and Matt!
+Assistance provided by the instructors and facilitators at Kenzie Academy. Special shout-outs to Joe and Matt! Stackoverflow was an invaluable resource while working through all the bugs.
+
+In keeping with the theme of "clones," I drew inspiration for the style of this project from Star Wars: Attack of the Clones (no longer the second-worst movie in the franchise!). Colors were designed to match the palette found here: https://www.vox.com/culture/2015/12/17/10322514/star-wars-colors.
 
 ## Support
 

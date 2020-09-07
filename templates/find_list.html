@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div id="main-column" class="container" style="display: block; text-align: center;">
+<div id="main-column" class="container">
 <h4>Twittercloners you may know:</h4>
 {% for users in user_list %}
 {% if users not in request.user.follows.all %}

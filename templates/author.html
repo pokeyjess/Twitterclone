@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<div id="main-column" class="container" style="display: block; text-align: center">
+<div id="main-column" class="container">
   {% if not author %}
   <h2>The author you are looking for does not exist</h2>
   {% else %}
@@ -21,7 +21,6 @@
       alt="{{ author.username }}"
       style="width: 150px; max-height: 200px"
     />
-
     {% endif %}
   </div>
 
@@ -37,18 +36,13 @@
 </br>
 </br>
 </br>
-
-
   <button class="btn btn-sm">
     Ping me at:
     <a href="/postform/">@{{ author.username }}</a>
   </button>
 </br>
 </br>
-  
     {% if request.user.is_authenticated %}
-
-    
       {% if author.id != request.user.id %} {% if author in my_following %}
       <button>
         <a href="/unfollow/{{author.id}}">Unfollow</a>
@@ -58,9 +52,6 @@
         <a href="/follow/{{author.id}}">Follow</a>
       </button>
       {% endif %} {% endif %} {% endif %}
-    
-    {% endif %}
-  
 </br>
   <h5>Total Twitterclones: {{posts.count}}</h5>
   <h3>{{ author.username }}'s Twitterclones:</h3>
@@ -73,7 +64,6 @@
     </li>
     {% endfor %}
   </ul>
-
-  
+  {% endif %} 
 </div>
 {% endblock %}

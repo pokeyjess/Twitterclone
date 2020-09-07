@@ -1,42 +1,45 @@
       
-   <div>
-   <a id="notify" class="glyphicon glyphicon-backward" href="javascript:history.go(-1)"></a>
-
+   
+   <nav class="navbar navbar-custom">
       {% if request.user.is_authenticated%}
-      <button class="btn btn-sm">
-        <a href="/logout/">Log Out</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/{{request.user.username}}/">Profile</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/list/">Your connections</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/find/">Find new connections</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/">Newsfeed</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/postform/">Create a Tweetclone</a>
-      </button>
-      {% if pings.count >= 1 %}
+      <ul class="nav navbar-nav navbar-center">
+      <li><a id="notify" class="glyphicon glyphicon-backward" href="javascript:history.go(-1)"></a>
+      </li>
+      <li>
+        <a id="nav-link" href="/logout/">Log Out</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/{{request.user.username}}/">Profile</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/list/">Your connections</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/find/">Find new connections</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/">Newsfeed</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/postform/">Create a Tweetclone</a>
+      </li>
+      <li>{% if pings.count >= 1 %}
       <a id="notify" class="glyphicon glyphicon-bell" href="/notifications/">{{ pings.count }}</a>
       {% else %}
       <a id="notify" class="glyphicon glyphicon-remove" href="/notifications/">0</a>
       {% endif %}
+      </li>
       {% else %}
-      <button class="btn btn-sm">
-        <a href="/login/">Log In</a>
-      </button>
-      <button class="btn btn-sm">
-        <a href="/signup/">Create an account</a>
-      </button>
+      <li>
+        <a id="nav-link" href="/login/">Log In</a>
+      </li>
+      <li>
+        <a id="nav-link" href="/signup/">Create an account</a>
+      </li>
+      </ul>
       {% endif %}
-    </div>
 </br>
-<div>
+</nav>
 
 
 
