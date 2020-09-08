@@ -59,6 +59,8 @@ Assistance provided by the instructors and facilitators at Kenzie Academy. Speci
 
 In keeping with the theme of "clones," I drew inspiration for the style of this project from Star Wars: Attack of the Clones (no longer the second-worst movie in the franchise!). Colors were designed to match the palette found here: https://www.vox.com/culture/2015/12/17/10322514/star-wars-colors.
 
+Clip-art used in the screenshots was courtesy of: "Star Wars by Clipart.info, licensed under CC BY 4.0"
+
 ## Support
 
 Any comments regarding problems with this application, or general feedback, can be directed to: pokeyjess72@gmail.com

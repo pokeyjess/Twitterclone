@@ -10,6 +10,9 @@
 #notify {
   color: rgb(104, 87, 76);
 }
+#postform {
+  color: rgb(73, 61, 54);
+}
 .navbar-custom {
   background-color: rgb(202, 146, 106);
   display: block;

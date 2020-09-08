@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} 
 
 </br>
-
+<div id="postform">
 {% if request.user.is_authenticated != True %}
 <h1>Welcome to Twitterclone!</h1>
 </br>
@@ -14,5 +14,6 @@
     {% csrf_token %} {{ form.as_p }}
     <input type="submit" value="Submit!" />
   </form>
+</div>
 </div>
 {% endblock %}
