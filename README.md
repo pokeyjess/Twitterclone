@@ -34,7 +34,7 @@ To send notifications, simply create a Twitterclone, and include the '@' symbol,
 
 Profile pages list only that user's posts, plus the count of total posts made by that user. You will see edit and trash icons on your own profile and post pages. Delete functions are equipped with basic JavaScript alerts, and further controls are in place to prevent staff members from deleting their accounts.
 
-<img width="900" alt="Screen Shot 2020-09-07 at 11 37 04 PM" src="https://user-images.githubusercontent.com/65363804/92431881-9a8b4c80-f166-11ea-96df-ac71645e3c91.png">
+<img width="580" alt="Screen Shot 2020-09-07 at 11 27 45 PM" src="https://user-images.githubusercontent.com/65363804/92432185-767c3b00-f167-11ea-8dc2-e9a44a3d6945.png">
 
 The information on the profile page is visible to anyone, whether logged into the program or not. It can be accessed directly, using the "display name" in the URL.
 
