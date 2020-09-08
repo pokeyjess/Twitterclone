@@ -12,6 +12,8 @@ Feel free to invite non-logged in, non-users, to view your profile and your indi
 
 ## Details of features
 
+<img width="901" alt="Screen Shot 2020-09-07 at 11 25 15 PM" src="https://user-images.githubusercontent.com/65363804/92431322-387e1780-f165-11ea-8157-4385e751a24f.png">
+
 If you try to access the homepage without logging in, you will be directed to a login page, which also includes a link to the signup page, in case you don't already have an account. Signing up for an account will log you in automatically.
 
 The homepage lists all of your “Tweets,” along with the posts of the people you are following. 
@@ -33,8 +35,7 @@ To see how many people that user is following, or to follow/unfollow them, you m
 Users who are not logged in can also view a detailed page for each of your posts, with a link to your profile. This way, you can gain new followers by attracting them to your posts!
 
 ## Work in progress
-
-I still need to add some more styling and formatting to the project! I'm hoping to also add some screenshots. 
+ 
 
 I am already working on an updated version, and have some ideas for features I'd like to add/improve. As I grow my Django skills, hopefully the functionality of my Twitterclone will grow as well. I am open to suggestions!
 
