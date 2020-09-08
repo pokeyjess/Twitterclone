@@ -3,13 +3,15 @@
 
 <div id="main-column" class="container">
 <h4>Your connections:</h4>
+<p>-----------------------------------</p>
 {% for users in user_list %}
+<div class="card">
 {% if users in request.user.follows.all %}
 {% if users != request.user %}
+<div class="card-title">
 <a class="btn btn-sm" href="/{{users.username}}/" role="button">{{users.username}}</a> 
+</div>
 </br>
-</br>
-
     {% if users.profile_image %}
     <img class="img-thumbnail"
       src="{{ users.profile_image.url }}"
@@ -22,15 +24,14 @@
       alt="{{ users.username }}"
       style="width: 40px; max-height: 80px;"
     />
-
     {% endif %}
-
 </br>
 </br>
-<i>What I do: {{users.job_title}}</i>
+<i class="card-text">What I do: {{users.job_title}}</i>
 <p>----------------------------------</p>
 {% endif %}
 {% endif %}
+</div>
 {% endfor %}
 </br>
 </div>

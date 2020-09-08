@@ -23,6 +23,7 @@
     />
     {% endif %}
   </div>
+</br>
 
   <i>Twittercloning since: {{ author.joined_date }}</i>
   <h5>Follows: {{ author.follows.count}}</h5>
@@ -46,6 +47,7 @@
         <a class="btn btn-sm" href="/follow/{{author.id}}" role="button">Follow</a>
       {% endif %} {% endif %} {% endif %}
 </br>
+<p>-----------------------------------</p>
   <h5>Total Twitterclones: {{posts.count}}</h5>
   <h3>{{ author.username }}'s Twitterclones:</h3>
   <ul>
