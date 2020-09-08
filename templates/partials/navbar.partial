@@ -1,8 +1,9 @@
       
    
    <nav class="navbar navbar-custom">
-      {% if request.user.is_authenticated%}
+      
       <ul class="nav navbar-nav navbar-center">
+      {% if request.user.is_authenticated%}
       <li><a id="notify" class="glyphicon glyphicon-backward" href="javascript:history.go(-1)"></a>
       </li>
       <li>

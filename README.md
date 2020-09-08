@@ -24,7 +24,9 @@ If you have notifications, a bell will appear to the very right of the navigatio
 
 To send notifications, simply create a Twitterclone, and include the '@' symbol, followed by the user's "display name".
 
-Profile pages list only that user's posts, plus the count of total posts made by that user. The information on this page is visible to anyone, whether logged into the program or not. It can be accessed directly, using the "display name" in the URL.
+Profile pages list only that user's posts, plus the count of total posts made by that user. You will see edit and trash icons on your own profile and post pages. Delete functions are equipped with basic JavaScript alerts, and further controls are in place to prevent staff members from deleting their accounts.
+
+The information on the profile page is visible to anyone, whether logged into the program or not. It can be accessed directly, using the "display name" in the URL.
 
 To see how many people that user is following, or to follow/unfollow them, you must be logged in. A link to create a post -- which will send you to the log in page first -- is included on the profile.
 

@@ -6,7 +6,7 @@
 {% for users in user_list %}
 {% if users in request.user.follows.all %}
 {% if users != request.user %}
-<a href="/{{users.username}}/">{{users.username}}</a> 
+<a class="btn btn-sm" href="/{{users.username}}/" role="button">{{users.username}}</a> 
 </br>
 </br>
 

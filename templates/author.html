@@ -36,21 +36,14 @@
 </br>
 </br>
 </br>
-  <button class="btn btn-sm">
-    Ping me at:
-    <a href="/postform/">@{{ author.username }}</a>
-  </button>
+  <a class="btn btn-sm" href="/postform/" role="button">Ping me at: @{{ author.username }}</a>
 </br>
 </br>
     {% if request.user.is_authenticated %}
       {% if author.id != request.user.id %} {% if author in my_following %}
-      <button>
-        <a href="/unfollow/{{author.id}}">Unfollow</a>
-      </button>
+      <a class="btn btn-sm" href="/unfollow/{{author.id}}" role="button">Unfollow</a>
       {% else %}
-      <button>
-        <a href="/follow/{{author.id}}">Follow</a>
-      </button>
+        <a class="btn btn-sm" href="/follow/{{author.id}}" role="button">Follow</a>
       {% endif %} {% endif %} {% endif %}
 </br>
   <h5>Total Twitterclones: {{posts.count}}</h5>
