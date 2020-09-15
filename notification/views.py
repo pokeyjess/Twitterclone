@@ -15,3 +15,4 @@ def notifications(request):
 
 # https://stackoverflow.com/questions/38807551/python-django-how-to-delete-an-instance-automatically-after-an-action
 # https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/
+

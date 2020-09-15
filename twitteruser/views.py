@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import View
 from twitteruser.models import MyUser
 from tweet.models import Posts
 from notification.models import Message
@@ -9,25 +10,28 @@ from twitteruser.forms import ProfileForm
 @login_required
 def index(request):
     data = MyUser.objects.all()
-    following = request.user.follows.all()
-    pings = Message.objects.filter(receiver=request.user)
-    return render(request, "index.html", {'data': data, "following": following, "pings": pings})
+    return render(request, "index.html", {'data': data})
 
-def author(request, username):
-    if request.user.is_authenticated:
+class Author(View):
+
+    def get(self, request, username):
+        html = "author.html"
+        if request.user.is_authenticated:
+            author_info = MyUser.objects.filter(username=username).first()
+            post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
+            my_following = request.user.follows.all()
+            pings = Message.objects.filter(receiver=request.user)
+            return render(request, html, {"author": author_info, "posts": post_list, "pings": pings, "my_following": my_following})
+        else:
+            return HttpResponseRedirect('public')  
+
+class AuthorView(View):
+
+    def get(self, request, username):
+        html = "author.html"
         author_info = MyUser.objects.filter(username=username).first()
         post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
-        following = author_info.follows.all()
-        my_following = request.user.follows.all()
-        pings = Message.objects.filter(receiver=request.user)
-        return render(request, "author.html", {"author": author_info, "posts": post_list, "pings": pings, "following": following, "my_following": my_following})
-    else:
-        return HttpResponseRedirect('public')
-
-def author_view(request, username):
-    author_info = MyUser.objects.filter(username=username).first()
-    post_list = Posts.objects.filter(author=author_info).order_by("-post_time")
-    return render(request, "author.html", {"author": author_info, "posts": post_list})
+        return render(request, html, {"author": author_info, "posts": post_list})
 
 @login_required
 def author_list(request):
@@ -90,3 +94,4 @@ https://www.geeksforgeeks.org/python-uploading-images-in-django/
 https://learndjango.com/tutorials/django-file-and-image-uploads-tutorial
 https://coderwall.com/p/bz0sng/simple-django-image-upload-to-model-imagefield
 """
+
