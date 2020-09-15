@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import View
 from tweet.models import Posts
 from tweet.forms import PostForm
 from twitteruser.models import MyUser
@@ -10,7 +11,6 @@ import re
 @login_required
 def index(request):
     post_list = Posts.objects.all().order_by('-post_time')
-    # user_list = MyUser.objects.all().order_by('username')
     pings = Message.objects.filter(receiver=request.user)
     return render(request, "index.html", {"post_list": post_list, "pings": pings})
 
@@ -30,17 +30,22 @@ def post_form_view(request):
     form = PostForm()
     return render(request, "generic_form.html", {"form": form, "pings": pings})
 
-def post_detail(request, post_id):
-    if request.user.is_authenticated:
-        post = get_object_or_404(Posts, id=post_id)
-        pings = Message.objects.filter(receiver=request.user)
-        return render(request, 'post_detail.html', {'post': post, 'pings': pings})
-    else:
-        return HttpResponseRedirect('public')
+class PostDetail(View):
+    
+    def get(self, request, post_id):
+        html = 'post_detail.html'
+        if request.user.is_authenticated:
+            post = get_object_or_404(Posts, id=post_id)
+            pings = Message.objects.filter(receiver=request.user)
+            return render(request, html, {'post': post, 'pings': pings})
+        else:
+            return HttpResponseRedirect('public')
 
-def public_post(request, post_id):
-    post = get_object_or_404(Posts, id=post_id)
-    return render(request, 'post_detail.html', {'post': post})
+class PublicPost(View):
+    def get(self, request, post_id):
+        html = "post_detail.html"
+        post = get_object_or_404(Posts, id=post_id)
+        return render(request, html, {'post': post})
 
 @login_required
 def edit_post(request, post_id):
@@ -81,8 +86,3 @@ def down_vote(request, post_id):
     vote.total_votes -= 1
     vote.save()
     return redirect(request.META.get('HTTP_REFERER'))
-
-def votes(request):
-    post_list = Posts.objects.all().order_by('-total_votes')
-    return render(request, "index.html", {"post_list": post_list})
-
